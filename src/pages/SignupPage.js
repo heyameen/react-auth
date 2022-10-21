@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import { useToken } from '../auth/useToken'
 
 export const SignupPage = () => {
+    const [token, setToken] = useToken()
     const [errorMessage, setErrorMessage] = useState('')
     const [emailValue, setEmailValue] = useState('')
     const [passwordValue, setPasswordValue] = useState('')
@@ -10,7 +13,14 @@ export const SignupPage = () => {
     const history = useHistory()
     
     const onSignupClicked = async () => {
+        const response = await axios.post('api/signup', {
+            email: emailValue,
+            password: passwordValue
+        })
 
+        const { token } = response.data
+        setToken(token)
+        history.push('/')
     }
 
     return (
@@ -21,7 +31,7 @@ export const SignupPage = () => {
             <input value={passwordValue} onChange={e => setPasswordValue(e.target.value)} type="password" placeholder="password" />
             <input value={confirmPasswordValue} onChange={e => setConfirmPasswordValue(e.target.value)} type="password" placeholder="password" />
             <hr/>
-            <button disabled={!emailValue || !passwordValue || passwordValue !== confirmPasswordValue} onClick={onSignupClicked}>Sign uo</button>
+            <button disabled={!emailValue || !passwordValue || passwordValue !== confirmPasswordValue} onClick={onSignupClicked}>Sign up</button>
             <button onClick={() => history.push('/login')}>Already have an account? Login</button>
         </div>
     )
