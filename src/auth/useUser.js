@@ -21,7 +21,7 @@ export const useUser = () => {
         } else {
             setUser(getPayLoadFromToken(token))
         }
-    })
+    }, [token])
 
     return user;
 }
