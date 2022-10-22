@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { LoginPage } from './pages/LoginPage';
 import { PrivateRoute } from './auth/PrivateRoute';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { SignupPage } from './pages/SignupPage';
 import { UserInfoPage } from './pages/UserInfoPage';
 
@@ -18,6 +19,9 @@ export const Routes = () => {
                 </Route>
                 <Route path="/forgot-password">
                     <ForgotPasswordPage />
+                </Route>
+                <Route path="/reset-password/:passwordResetCode">
+                    <ResetPasswordPage />
                 </Route>
                 <Route path="/signup">
                     <SignupPage />
