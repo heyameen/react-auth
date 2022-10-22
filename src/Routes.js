@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { UserInfoPage } from './pages/UserInfoPage';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { LoginPage } from './pages/LoginPage';
-import { SignupPage } from './pages/SignupPage';
 import { PrivateRoute } from './auth/PrivateRoute';
+import { SignupPage } from './pages/SignupPage';
+import { UserInfoPage } from './pages/UserInfoPage';
 
 export const Routes = () => {
     return (
@@ -13,6 +15,9 @@ export const Routes = () => {
                 </PrivateRoute>
                 <Route path="/login">
                     <LoginPage />
+                </Route>
+                <Route path="/forgot-password">
+                    <ForgotPasswordPage />
                 </Route>
                 <Route path="/signup">
                     <SignupPage />
